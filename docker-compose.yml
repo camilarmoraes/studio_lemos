@@ -1,0 +1,54 @@
+version: "3.5"
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginxflask
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - flask
+
+
+  db:
+    image: phdcoder/postgresbr
+    restart: always
+    volumes:
+      - studio_lemos:/var/lib/postgresql/data/pgdata2
+    environment:
+      POSTGRES_USER: studio
+      POSTGRES_DB: studio_lemos
+      POSTGRES_PASSWORD: studio123
+      PGDATA: /var/lib/postgresql/data/pgdata2
+      LANG: pt_BR.utf8
+    ports:
+      - "5333:5432"
+
+
+  flask:
+    depends_on:
+      - db
+    container_name: flask
+    command: "gunicorn app:app --bind 0.0.0.0:8080 --reload"
+    image: studio_lemos
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+
+    
+
+
+volumes:
+  studio_lemos:
+    external: true
+
+
+
+
+
+    

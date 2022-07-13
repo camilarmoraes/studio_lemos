@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Lemos</title>
+    <!-- <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/static/icons/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Studio Lemos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="/admin">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/listar_cliente">Cliente</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/listar_agenda">Agenda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/listar_horario">Horario</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/listar_procedimento">Procedimento</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+</head>
+
+<body>
+    
+    <form class="row g-3 needs-validation" novalidate action="/admin/edit_agenda/{{agenda.id}}" method="POST" style=" width: 50vw; margin-left : 25vw;">
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Nome</label>
+          <input type="text" name="nome" class="form-control" id="validationCustom01"  required value="{{agenda.nome}}">
+          <div class="valid-feedback">
+            Parece Bom!
+          </div>
+          <div class="invalid-feedback">
+            O nome não pode ser nulo!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Telefone</label>
+          <input type="text" name="telefone" class="form-control" id="validationCustom02"  required value="{{agenda.telefone}}">
+          <div class="valid-feedback">
+            Parece Bom!
+          </div>
+          <div class="invalid-feedback">
+            O telefone não pode ser nulo!
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustom04" class="form-label">Procedimento 1</label>
+          <select class="form-select" name="procedimento1" id="validationCustom04" required >
+            <option selected disabled value="{{agenda.procedimento1}}">Escolher...</option>
+                  {% for e in procedimentos %}
+                  <option value="{{e.id}}">{{e.procedimento}} {{e.numero}}</option>
+                  {% endfor %}
+          </select>
+          <div class="invalid-feedback">
+            Por favor, selecione um procedimento!
+          </div>
+        </div>
+      
+        <div class="col-md-3">
+          <label for="validationCustom04" class="form-label">Procedimento 2</label>
+          <select class="form-select" name="procedimento2" id="validationCustom04" required>
+            <option selected disabled value="{{agenda.procedimento2}}">Escolher...</option>
+                  {% for e in procedimentos %}
+                  <option value="{{e.id}}">{{e.procedimento}} {{e.numero}}</option>
+                  {% endfor %}
+          </select>
+          <div class="invalid-feedback">
+            Por favor, selecione um procedimento!
+          </div>
+        </div>
+      
+        <div class="col-md-3">
+          <label for="validationCustom04" class="form-label">Procedimento 3</label>
+          <select class="form-select" name="procedimento3" id="validationCustom04" required>
+            <option selected disabled value="{{agenda.procedimento3}}">Escolher...</option>
+            {% for e in procedimentos %}
+            <option value="{{e.id}}">{{e.procedimento}} {{e.numero}}</option>
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback">
+            Por favor, selecione um procedimento!
+          </div>
+        </div>
+      
+        <div class="col-md-3">
+          <label for="validationCustom04" class="form-label">Horário</label>
+          <select class="form-select" name="horario" id="validationCustom04" required>
+              <option selected disabled value="{{agenda.hora}} {{agenda.data}}">Escolher...</option>
+              {% for e in horario %}
+              <option value="{{e.id}}">{{e.hora}} {{e.data}}</option>
+              {% endfor %}
+          </select>
+          <div class="invalid-feedback">
+            Por favor, selecione um horário!
+          </div>
+        </div>
+      
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Agendar</button>
+        </div>
+        <br>
+      </form>
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </body>
+  
+  </html>

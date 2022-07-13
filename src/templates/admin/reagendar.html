@@ -1,0 +1,148 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+
+
+<style>
+  .notification{
+      text-align: center;
+      background-color: blanchedalmond;
+      width: 100%;
+  }
+  
+  </style>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+     
+      {% for message in messages %}
+       <div class="notification">
+          {{message}}
+       </div>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+<form class="row g-3 needs-validation" novalidate action="{{url_for('reagendar')}}" method="POST" style=" width: 50vw; margin-left : 25vw;">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="Camila" required>
+      <div class="valid-feedback">
+        Parece Bom!
+      </div>
+      <div class="invalid-feedback">
+        O nome não pode ser nulo!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Telefone</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="(00) 0 0000-0000" required>
+      <div class="valid-feedback">
+        Parece Bom!
+      </div>
+      <div class="invalid-feedback">
+        O telefone não pode ser nulo!
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">Procedimento 1</label>
+      <select class="form-select" id="validationCustom04" required>
+        <option selected disabled value="">Escolher...</option>
+              {% for e in procedimentos %}
+              <option value="{{e.id}}">{{e.procedimento}} {{e.numero}}</option>
+              {% endfor %}
+      </select>
+      <div class="invalid-feedback">
+        Por favor, selecione um procedimento!
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">Procedimento 2</label>
+      <select class="form-select" id="validationCustom04" required>
+        <option selected disabled value="">Escolher...</option>
+              {% for e in procedimentos %}
+              <option value="{{e.id}}">{{e.procedimento}} {{e.numero}}</option>
+              {% endfor %}
+      </select>
+      <div class="invalid-feedback">
+        Por favor, selecione um procedimento!
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">Procedimento 3</label>
+      <select class="form-select" id="validationCustom04" required>
+        <option selected disabled value="">Escolher...</option>
+              {% for e in procedimentos %}
+              <option value="{{e.id}}">{{e.procedimento}} {{e.numero}}</option>
+              {% endfor %}
+      </select>
+      <div class="invalid-feedback">
+        Por favor, selecione um procedimento!
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">Horário</label>
+      <select class="form-select" id="validationCustom04" required>
+        
+          <option selected disabled value="">Escolher...</option>
+          {% for e in horario %}
+          <option value="{{e.id}}">{{e.hora}} {{e.data}}</option>
+          {% endfor %}
+      </select>
+      <div class="invalid-feedback">
+        Por favor, selecione um horário!
+      </div>
+    </div>
+  
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Agendar</button>
+    </div>
+    <br>
+  </form>
+  
+<script>
+    (function () {
+      'use strict'
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+    
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+    
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+    </script>
+
+<script>
+    (function () {
+      'use strict'
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+    
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+    
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+    </script>
+{% endblock %}

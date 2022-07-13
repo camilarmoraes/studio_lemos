@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+
+<style>
+    .notification{
+        text-align: center;
+        background-color: blanchedalmond;
+        width: 100%;
+    }
+    
+    </style>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+       
+        {% for message in messages %}
+         <div class="notification">
+            {{message}}
+         </div>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+<div>
+    <form class="row g-3 needs-validation" novalidate action="{{url_for('login')}}" method="POST" style=" width: 50vw; margin-left : 25vw;">
+        <div class="col-md-4">
+        <label for="validationCustom01" class="form-label">Login</label>
+        <input type="text" name="login" class="form-control" id="validationCustom01" placeholder="Nome Login" required>
+        <div class="valid-feedback">
+            Parece Bom!
+        </div>
+        <div class="invalid-feedback">
+            O nome não pode estar em branco!
+        </div>
+        </div>
+        <div class="col-md-4">
+        <label for="validationCustom02" class="form-label">Senha</label>
+        <input type="password" name="senha" class="form-control" id="validationCustom02" placeholder="*****" required>
+        <div class="valid-feedback">
+            Parece Bom!
+        </div>
+        <div class="invalid-feedback">
+            A senha não pode estar em branco!
+        </div>
+        </div>
+        <div class="col-12">
+        </div>
+        <div class="col-12">
+        <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+        <br>
+    </form>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+</script>
+{% endblock %}
